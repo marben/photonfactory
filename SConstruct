@@ -1,18 +1,18 @@
-list = Split("""main.cc
-		Screen.cc
-		Pngexp.cc
-		Color.cc
-		Sphere.cc
-		Scene.cc
-		Triangle.cc
-		Triangle2d.cc
-		Raytracer.cc
-		Plane.cc
-		YafImport.cc
-		Camera.cc
-		BasicShader.cc
-		Matrix4x4.cc
-		SurfacePoint.cc
+list = Split("""src/main.cc
+		src/Screen.cc
+		src/Pngexp.cc
+		src/Color.cc
+		src/Sphere.cc
+		src/Scene.cc
+		src/Triangle.cc
+		src/Triangle2d.cc
+		src/Raytracer.cc
+		src/Plane.cc
+		src/YafImport.cc
+		src/Camera.cc
+		src/BasicShader.cc
+		src/Matrix4x4.cc
+		src/SurfacePoint.cc
 		""")
 
 flags = '-Wall -O3 -pedantic -ansi -ffast-math -Wextra'
