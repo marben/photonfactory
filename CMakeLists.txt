@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.6)
 
 project(PhotonFactory)
 
-file(GLOB SOURCES src/*.cc src/*.h)
+file(GLOB SOURCES src/*.cc)
 
 find_package(PNG REQUIRED)
 include_directories(${PNG_INCLUDE_DIR})
