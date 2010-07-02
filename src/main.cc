@@ -27,5 +27,5 @@ int main(int argc, char* argv[]){
 	Raytracer r(scene, outputFile);
 	r.render();
 	delete scene;
-	return 0;
+	return 0; 
 }
