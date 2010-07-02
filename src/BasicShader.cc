@@ -34,7 +34,7 @@ Color BasicShader::shade(const SurfacePoint& surfacePoint, const vector<Light*>&
 		wfloat lightDistance = _distance(surface.getPoint(), lights[i]->getCenter());
 		color_t intensity = lights[i]->getIntensity(lightDistance);
 		intensity *= (color_t)lights[i]->getPower();
-		c += diffusion * color * diffuse  * lights[i]->getColor()*intensity;	// diffuse 
+		c += diffusion * color * diffuse  * lights[i]->getColor()*intensity;	// diffuse
 
 		// -- specular
 		Vector3d lightReflection = lightRay.getDirection() * (-1);

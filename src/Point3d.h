@@ -4,6 +4,7 @@
 #include "config.h"
 #include <cmath>
 #include <iostream>
+#include <Eigen/Core>
 
 namespace PF{
 
@@ -15,6 +16,7 @@ struct Point3d{
 		wfloat getY(){return y;}
 		wfloat getZ(){return z;}
 		wfloat x, y, z;
+
 };
 
 inline Point3d operator - (const Point3d& a, const Point3d& b){
