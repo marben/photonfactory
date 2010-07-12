@@ -49,5 +49,6 @@ Color BasicShader::shade(const SurfacePoint& surfacePoint, const vector<Light*>&
 
 	}
 
+	c.normalize();
 	return c;
 }

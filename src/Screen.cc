@@ -6,15 +6,8 @@ using namespace PF;
 typedef unsigned int uint;
 
 Screen::Screen(){
-	//x = 800;
-	//y = 600;
-	//realX1 = -4;
-	//realY1 = 3;
-	//realX2 = 4;
-	//realY2 = -3;
-
-	//allocateColors();
 }
+
 void Screen::init(){
 	allocateColors();
 }

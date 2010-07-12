@@ -25,5 +25,5 @@ set(EIGEN_INCLUDE_DIR /usr/include/eigen2)
 include_directories(${EIGEN_INCLUDE_DIR})
 
 add_executable(ray ${SOURCES})
-target_link_libraries(ray ${PNG_LIBRARIES} ${LIBXML2_LIBRARIES})
+target_link_libraries(ray ${PNG_LIBRARIES} ${LIBXML2_LIBRARIES} ggl)
 

@@ -6,6 +6,8 @@
 #include "SurfacePoint.h"
 #include "BasicShader.h"
 
+#include <PngWriter.h>	// ggl
+
 using namespace std;
 using namespace PF;
 
@@ -29,6 +31,7 @@ Color Raytracer::raytrace(const Ray& ray, uint recursion){
 				color +=raytrace(secondaryRays[i].first, recursion)*secondaryRays[i].second;
 			}
 		}
+
 		return color;
 	}
 	return _scene->getBackgroundColor();
@@ -41,8 +44,10 @@ void Raytracer::render(){
 		Color color = raytrace(ray);
 		_scene->screen.setColor(i, color);
 	}
+
 // exporting should be outside raytracer...but not for now...
 	Pngexp exporter;
+	ggl::PngWriter writer(_exportFile);
 	exporter.exp(_scene->screen, _exportFile);
 }
 
