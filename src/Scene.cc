@@ -10,13 +10,10 @@
 #include "BasicShader.h"
 #include "Camera.h"
 
-using namespace std;
-using namespace PF;
+namespace PF {
 
 void Scene::init(){
-	screen.setX(camera->getResolutionX());
-	screen.setY(camera->getResolutionY());
-	screen.init();
+	screen.setResolution(camera->getResolutionX(), camera->getResolutionY());
 }
 
 void Scene::addObject3d(Object3d* o){
@@ -34,7 +31,7 @@ void Scene::addShader(Shader* s){
 }
 
 uint Scene::getPrimaryRaysNum()const{
-	return screen.getX()*screen.getY();
+	return screen.getWidth()*screen.getHeight();
 }
 Scene::~Scene(){
 	// old-kool deleting of vectors of pointers
@@ -55,15 +52,19 @@ Scene::~Scene(){
 	delete camera;
 }
 
-Shader* Scene::findShader(const string& name){
+Shader* Scene::findShader(const std::string& name){
 	for(uint i = 0; i< this->shaders.size(); i++){
 		if(shaders[i]->getName() == name)
 			return shaders[i];
 	}
-	cerr<<"couldn't find shader name: "<<name<<" ... something is wrong.."<<endl;
+	std::cerr<<"couldn't find shader name: "<<name<<" ... something is wrong.."<<std::endl;
 	return 0;
 }
 
-Scene::Scene(){
+
+Scene::Scene()
+{
 	backgroundColor = Color(0,0,0);
 }
+
+}	// namespace PF

@@ -8,8 +8,8 @@ using namespace std;
 using namespace PF;
 
 bool Pngexp::exp(const Screen& sc, std::string filename){
-	uint width = sc.getX();
-	uint height = sc.getY();
+	uint width = sc.getWidth();
+	uint height = sc.getHeight();
 	FILE* f;
 	png_structp png_ptr = NULL;
 	png_infop info_ptr = NULL;
