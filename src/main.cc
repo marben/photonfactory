@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 #include "Scene.h"
 #include "Shader.h"
 #include "Raytracer.h"
@@ -14,18 +15,17 @@ int main(int argc, char* argv[]){
 		cout<<"jako paramter pouzijte nazev souboru s renderovanou scenou"<<endl;
 		return 0;
 	}
-	Scene* scene = import.import(argv[1]);
+	auto_ptr<Scene> scene( import.import(argv[1]) );
 
-	if(scene == NULL){
+	if(scene.get() == 0){
 		cerr<<"error loading scene"<<endl;
 		return 0;
 	}
 	string outputFile(argv[1]);
-	outputFile[outputFile.size()-1]='g';	// tohle je jen narychlo :(
+	outputFile[outputFile.size()-1]='g';	// tohle je jen narychlo :)
 	outputFile[outputFile.size()-2]='n';
 	outputFile[outputFile.size()-3]='p';
-	Raytracer r(scene, outputFile);
+	Raytracer r(scene.get(), outputFile);
 	r.render();
-	delete scene;
 	return 0; 
 }

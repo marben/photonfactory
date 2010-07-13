@@ -5,7 +5,7 @@
 #include "Screen.h"
 
 using namespace std;
-using namespace PF;
+namespace PF {
 
 bool Pngexp::exp(const Screen& sc, std::string filename){
 	uint width = sc.getWidth();
@@ -81,3 +81,5 @@ bool Pngexp::exp(const Screen& sc, std::string filename){
 
 	return true;
 }
+
+}	// namespace PF
