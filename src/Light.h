@@ -2,7 +2,6 @@
 #define _LIGHT_H_
 
 #include "Point3d.h"
-#include "Color.h"
 
 namespace PF{
 

@@ -1,7 +1,6 @@
 #ifndef _OBJECT3D_H_
 #define _OBJECT3D_H_
 
-#include "Color.h"
 #include "Point3d.h"
 #include "Light.h"
 #include "Ray.h"

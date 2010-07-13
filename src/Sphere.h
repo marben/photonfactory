@@ -6,7 +6,6 @@
 #include "Ray.h"
 #include "config.h"
 #include <iostream>
-#include "Color.h"
 #include "Light.h"
 #include <vector>
 

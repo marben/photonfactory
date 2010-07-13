@@ -1,6 +1,5 @@
 #include "Sphere.h"
 #include <cmath>
-#include "Color.h"
 #include "Vector3d.h"
 
 using namespace std;

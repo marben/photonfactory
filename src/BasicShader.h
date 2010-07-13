@@ -3,7 +3,6 @@
 
 #include "config.h"
 #include "Shader.h"
-#include "Color.h"
 #include "SurfacePoint.h"
 #include "Ray.h"
 #include "Light.h"

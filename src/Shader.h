@@ -5,7 +5,6 @@
 #include "Vector3d.h"
 #include "Light.h"
 #include "SurfacePoint.h"
-#include "Color.h"
 #include <vector>
 #include <string>
 

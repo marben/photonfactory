@@ -3,7 +3,6 @@
 
 #include <Image2d.h>	// ggl
 
-#include "Color.h"
 #include "config.h"
 #include "Point3d.h"
 #include "Camera.h"

@@ -48,10 +48,6 @@ std::auto_ptr< Screen > Raytracer::render(const Scene& scene){
 		screen->setColor(i, color);
 	}
 
-// exporting should be outside raytracer...but not for now...
-	//Pngexp exporter;
-	//ggl::PngWriter writer(_exportFile);
-	//exporter.exp(_scene->screen, _exportFile);
 	return screen;
 }
 

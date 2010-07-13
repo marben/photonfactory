@@ -188,30 +188,6 @@ src/Camera.cc.s:
 	$(MAKE) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/Camera.cc.s
 .PHONY : src/Camera.cc.s
 
-src/Color.o: src/Color.cc.o
-.PHONY : src/Color.o
-
-# target to build an object file
-src/Color.cc.o:
-	$(MAKE) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/Color.cc.o
-.PHONY : src/Color.cc.o
-
-src/Color.i: src/Color.cc.i
-.PHONY : src/Color.i
-
-# target to preprocess a source file
-src/Color.cc.i:
-	$(MAKE) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/Color.cc.i
-.PHONY : src/Color.cc.i
-
-src/Color.s: src/Color.cc.s
-.PHONY : src/Color.s
-
-# target to generate assembly for a file
-src/Color.cc.s:
-	$(MAKE) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/Color.cc.s
-.PHONY : src/Color.cc.s
-
 src/Matrix4x4.o: src/Matrix4x4.cc.o
 .PHONY : src/Matrix4x4.o
 
@@ -259,30 +235,6 @@ src/Plane.s: src/Plane.cc.s
 src/Plane.cc.s:
 	$(MAKE) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/Plane.cc.s
 .PHONY : src/Plane.cc.s
-
-src/Pngexp.o: src/Pngexp.cc.o
-.PHONY : src/Pngexp.o
-
-# target to build an object file
-src/Pngexp.cc.o:
-	$(MAKE) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/Pngexp.cc.o
-.PHONY : src/Pngexp.cc.o
-
-src/Pngexp.i: src/Pngexp.cc.i
-.PHONY : src/Pngexp.i
-
-# target to preprocess a source file
-src/Pngexp.cc.i:
-	$(MAKE) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/Pngexp.cc.i
-.PHONY : src/Pngexp.cc.i
-
-src/Pngexp.s: src/Pngexp.cc.s
-.PHONY : src/Pngexp.s
-
-# target to generate assembly for a file
-src/Pngexp.cc.s:
-	$(MAKE) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/Pngexp.cc.s
-.PHONY : src/Pngexp.cc.s
 
 src/Raytracer.o: src/Raytracer.cc.o
 .PHONY : src/Raytracer.o
@@ -517,18 +469,12 @@ help:
 	@echo "... src/Camera.o"
 	@echo "... src/Camera.i"
 	@echo "... src/Camera.s"
-	@echo "... src/Color.o"
-	@echo "... src/Color.i"
-	@echo "... src/Color.s"
 	@echo "... src/Matrix4x4.o"
 	@echo "... src/Matrix4x4.i"
 	@echo "... src/Matrix4x4.s"
 	@echo "... src/Plane.o"
 	@echo "... src/Plane.i"
 	@echo "... src/Plane.s"
-	@echo "... src/Pngexp.o"
-	@echo "... src/Pngexp.i"
-	@echo "... src/Pngexp.s"
 	@echo "... src/Raytracer.o"
 	@echo "... src/Raytracer.i"
 	@echo "... src/Raytracer.s"
