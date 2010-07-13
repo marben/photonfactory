@@ -11,14 +11,14 @@
 using namespace std;
 using namespace PF;
 
-Color Raytracer::raytrace(const Ray& ray, uint recursion){
+Color Raytracer::raytrace(const Scene& scene, const Ray& ray, uint recursion){
 	wfloat t;
 	Object3d* o=NULL;
 	Vector3d normal;
 
-	if(findIntersection(ray, &o, t, normal)){
+	if(findIntersection(scene, ray, &o, t, normal)){
 		Point3d xPoint(ray.getOrigin() + t * ray.getDirection());
-		vector<Light*> visibleLights = findVisibleLights(xPoint);
+		vector<Light*> visibleLights = findVisibleLights(scene, xPoint);
 		SurfacePoint sp(xPoint, ray, normal);
 		Shader* sh = o->getShader();
 		Color color = ((BasicShader*)sh)->shade(sp, visibleLights);	// raytraced shader is always BasicShader(so far)
@@ -28,31 +28,35 @@ Color Raytracer::raytrace(const Ray& ray, uint recursion){
 			vector<std::pair<Ray,color_t> > secondaryRays = (((BasicShader*)sh)->getSecondaryRays(sp, visibleLights));
 			recursion--;
 			for(uint i=0; i<secondaryRays.size();i++){
-				color +=raytrace(secondaryRays[i].first, recursion)*secondaryRays[i].second;
+				color +=raytrace(scene, secondaryRays[i].first, recursion)*secondaryRays[i].second;
 			}
 		}
 
 		return color;
 	}
-	return _scene->getBackgroundColor();
+	return scene.getBackgroundColor();
 }
 
-void Raytracer::render(){
-	Camera& camera = _scene->getCamera();
+
+std::auto_ptr< Screen > Raytracer::render(const Scene& scene){
+	Camera& camera = scene.getCamera();
+	std::auto_ptr<Screen> screen = scene.createScreen();
+
 	for(uint i=0; i<camera.getPrimaryRaysNum();i++){
 		Ray ray = camera.getPrimaryRay(i);
-		Color color = raytrace(ray);
-		_scene->screen.setColor(i, color);
+		Color color = raytrace(scene, ray);
+		screen->setColor(i, color);
 	}
 
 // exporting should be outside raytracer...but not for now...
-	Pngexp exporter;
-	ggl::PngWriter writer(_exportFile);
-	exporter.exp(_scene->screen, _exportFile);
+	//Pngexp exporter;
+	//ggl::PngWriter writer(_exportFile);
+	//exporter.exp(_scene->screen, _exportFile);
+	return screen;
 }
 
-vector<Light*> Raytracer::findVisibleLights(const Point3d& xPoint){		// ted s novejma shaderama nefungujou stiny a vubec .. nutno prepsat
-	vector<Light*> allLights = _scene->lights; // ! hack ! tak tady to chce urcite optimalizovat
+vector<Light*> Raytracer::findVisibleLights(const Scene& scene, const Point3d& xPoint){		// ted s novejma shaderama nefungujou stiny a vubec .. nutno prepsat
+	vector<Light*> allLights = scene.lights; // ! hack ! tak tady to chce urcite optimalizovat
 	vector<Light*> visibleLights;	// sem budu pridavat svetla, ktera vidim
 	Vector3d normal;
 	uint dontAdd;
@@ -63,9 +67,9 @@ vector<Light*> Raytracer::findVisibleLights(const Point3d& xPoint){		// ted s no
 			continue;
 		}
 		Ray rayToLight(xPoint, allLights[l]->getCenter());
-		for(uint o=0; o < _scene->objects.size(); o++){
+		for(uint o=0; o < scene.objects.size(); o++){
 			wfloat distance;
-			if(_scene->objects[o]->intersect(rayToLight, distance, normal)){	// should be shorten(explicit because of debugging :(  )
+			if(scene.objects[o]->intersect(rayToLight, distance, normal)){	// should be shorten(explicit because of debugging :(  )
 				wfloat intersectDistance=_distance(Point3d((rayToLight.getOrigin()+distance*rayToLight.getDirection())), xPoint);
 				if(intersectDistance > 0.00001){
 					wfloat lightDistance = _distance(xPoint, allLights[l]->getCenter());
@@ -82,14 +86,14 @@ vector<Light*> Raytracer::findVisibleLights(const Point3d& xPoint){		// ted s no
 	return visibleLights;
 }
 
-bool Raytracer::findIntersection(const Ray& ray, Object3d** o, wfloat& t, Vector3d& normal){
+bool Raytracer::findIntersection(const Scene& scene, const Ray& ray, Object3d** o, wfloat& t, Vector3d& normal){
 	wfloat min_t = 9999999; // ! hack !, je treba nejak poresit maximalni vzdalenost
 	Vector3d tmp_normal;
-	for(uint i=0; i<_scene->objects.size(); i++){
-		if(_scene->objects[i]->intersect(ray, t, tmp_normal))	// ! hack ! ta podminka by nemusela bejt nutna..asi
+	for(uint i=0; i < scene.objects.size(); i++){
+		if(scene.objects[i]->intersect(ray, t, tmp_normal))	// ! hack ! ta podminka by nemusela bejt nutna..asi
 			if((t<min_t)){// && (t>0.000001f)){	// ! hack ! - treba nejak poresit minimalni epsilon
 					min_t = t;
-					*o = _scene->objects[i];
+					*o = scene.objects[i];
 					normal = tmp_normal;
 			}
 	}

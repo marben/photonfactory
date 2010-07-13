@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cassert>
 #include "Scene.h"
 #include "Sphere.h"
 #include "Point3d.h"
@@ -13,7 +14,17 @@
 namespace PF {
 
 void Scene::init(){
-	screen.setResolution(camera->getResolutionX(), camera->getResolutionY());
+	//screen.setResolution(camera->getResolutionX(), camera->getResolutionY());
+}
+
+std::auto_ptr<Screen> Scene::createScreen() const
+{
+	std::auto_ptr<Screen> screen( new Screen);
+
+	assert(camera != NULL);
+	screen->setResolution(camera->getResolutionX(), camera->getResolutionY());
+
+	return screen;
 }
 
 void Scene::addObject3d(Object3d* o){

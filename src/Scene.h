@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 #include "Object3d.h"
 #include "Screen.h"
 #include "Light.h"
@@ -28,6 +29,10 @@ class Scene{
 		Shader* findShader(const std::string& name);
 		Scene();
 		void init();	// necessary initialization after scene is loaded
+
+		// creates a screen of a resolution suitable for scene
+		std::auto_ptr<Screen> createScreen() const;
+
 		~Scene();
 	//protected:
 		std::vector<Object3d*> objects;

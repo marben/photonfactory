@@ -1,5 +1,8 @@
 #include <iostream>
 #include <memory>
+
+#include <PngWriter.h>
+
 #include "Scene.h"
 #include "Shader.h"
 #include "Raytracer.h"
@@ -25,7 +28,13 @@ int main(int argc, char* argv[]){
 	outputFile[outputFile.size()-1]='g';	// tohle je jen narychlo :)
 	outputFile[outputFile.size()-2]='n';
 	outputFile[outputFile.size()-3]='p';
-	Raytracer r(scene.get(), outputFile);
-	r.render();
+
+	Raytracer r;
+	auto_ptr<Screen> screen = r.render(*scene.get());
+
+	ggl::PngWriter pngWriter;
+	pngWriter.outputFile(outputFile);
+	pngWriter.write(screen->getCanvas());
+
 	return 0; 
 }

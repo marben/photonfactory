@@ -18,7 +18,12 @@ class Screen{
 		void setResolution(unsigned width, unsigned height) {_image.resize(width, height);}
 		int setColor(unsigned x, unsigned y, const Color c);
 		void setColor(unsigned index, const Color& c);	// sets pixel number 'index'
+
+		// gets the color of a pixel
 		inline Color getColor(unsigned int x, unsigned int y)const;
+
+		// gets the whole canvas
+		const Canvas& getCanvas() const {return _image;}
 
 	private:
 
