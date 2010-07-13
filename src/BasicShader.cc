@@ -31,7 +31,7 @@ Color BasicShader::shade(const SurfacePoint& surfacePoint, const vector<Light*>&
 	for(uint i = 0; i < lights.size(); i++){
 		Ray lightRay(surface.getPoint(), lights[i]->getCenter());
 		color_t diffuse = dot(surface.getNormal(),lightRay.getDirection());
-		wfloat lightDistance = _distance(surface.getPoint(), lights[i]->getCenter());
+		wfloat lightDistance = PF::distance(surface.getPoint(), lights[i]->getCenter());
 		color_t intensity = lights[i]->getIntensity(lightDistance);
 		intensity *= (color_t)lights[i]->getPower();
 		c += diffusion * color * diffuse  * lights[i]->getColor()*intensity;	// diffuse

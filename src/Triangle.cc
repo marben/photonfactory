@@ -23,40 +23,40 @@ bool Triangle::intersect(const Ray& r, wfloat& distance, Vector3d& normal){
 
 // -- hledani nejlepsi projekce
 	Point2d P, B, C;
-	if(abs(normal.getX()) > abs(normal.getY())){
-		if(abs(normal.getX()) > abs(normal.getZ())){	// omitting x axis (the biggest one)
-			B.x = (*b).y - (*a).y;
-			B.y = (*b).z - (*a).z;
-			C.x = (*c).y - (*a).y;
-			C.y = (*c).z - (*a).z;
-			P.x = r.getOrigin().getY() + r.getDirection().getY() * distance - (*a).y;
-			P.y = r.getOrigin().getZ() + r.getDirection().getZ() * distance - (*a).z;
+	if(abs(normal.x()) > abs(normal.y())){
+		if(abs(normal.x()) > abs(normal.x())){	// omitting x axis (the biggest one)
+			B.x = (*b).y() - (*a).y();
+			B.y = (*b).z() - (*a).z();
+			C.x = (*c).y() - (*a).y();
+			C.y = (*c).z() - (*a).z();
+			P.x = r.getOrigin().y() + r.getDirection().y() * distance - (*a).y();
+			P.y = r.getOrigin().z() + r.getDirection().z() * distance - (*a).z();
 		}
 		else{	// omitting z axis
-				B.x = (*b).x - (*a).x;
-				B.y = (*b).y - (*a).y;
-				C.x = (*c).x - (*a).x;
-				C.y = (*c).y - (*a).y;
-				P.x = r.getOrigin().getX() + r.getDirection().getX() * distance - (*a).x;
-				P.y = r.getOrigin().getY() + r.getDirection().getY() * distance - (*a).y;
+				B.x = (*b).x() - (*a).x();
+				B.y = (*b).y() - (*a).y();
+				C.x = (*c).x() - (*a).x();
+				C.y = (*c).y() - (*a).y();
+				P.x = r.getOrigin().x() + r.getDirection().x() * distance - (*a).x();
+				P.y = r.getOrigin().y() + r.getDirection().y() * distance - (*a).y();
 		}
 	}
 	else{
-		if(abs(normal.getY()) > abs(normal.getZ())){	// omitting y axis
-			B.x = (*b).x - (*a).x;
-			B.y = (*b).z - (*a).z;
-			C.x = (*c).x - (*a).x;
-			C.y = (*c).z - (*a).z;
-			P.x = r.getOrigin().getX() + r.getDirection().getX() * distance - (*a).x;
-			P.y = r.getOrigin().getZ() + r.getDirection().getZ() * distance - (*a).z;
+		if(abs(normal.y()) > abs(normal.z())){	// omitting y axis
+			B.x = (*b).x() - (*a).x();
+			B.y = (*b).z() - (*a).z();
+			C.x = (*c).x() - (*a).x();
+			C.y = (*c).z() - (*a).z();
+			P.x = r.getOrigin().x() + r.getDirection().x() * distance - (*a).x();
+			P.y = r.getOrigin().z() + r.getDirection().z() * distance - (*a).z();
 		}
 		else{	// omitting z axis
-			B.x = (*b).x - (*a).x;
-			B.y = (*b).y - (*a).y;
-			C.x = (*c).x - (*a).x;
-			C.y = (*c).y - (*a).y;
-			P.x = r.getOrigin().getX() + r.getDirection().getX() * distance - (*a).x;
-			P.y = r.getOrigin().getY() + r.getDirection().getY() * distance - (*a).y;
+			B.x = (*b).x() - (*a).x();
+			B.y = (*b).y() - (*a).y();
+			C.x = (*c).x() - (*a).x();
+			C.y = (*c).y() - (*a).y();
+			P.x = r.getOrigin().x() + r.getDirection().x() * distance - (*a).x();
+			P.y = r.getOrigin().y() + r.getDirection().y() * distance - (*a).y();
 		}
 	}
 // -- konec hledani nejlepsi projekce

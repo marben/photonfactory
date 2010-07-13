@@ -45,7 +45,7 @@ CMAKE_EDIT_COMMAND = /usr/bin/cmake-gui
 CMAKE_SOURCE_DIR = /home/gix/programming/eclipse/photonfactory
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/gix/Dropbox/programming/eclipse/photonfactory
+CMAKE_BINARY_DIR = /home/gix/programming/eclipse/photonfactory
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -72,9 +72,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/gix/Dropbox/programming/eclipse/photonfactory/CMakeFiles /home/gix/Dropbox/programming/eclipse/photonfactory/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gix/programming/eclipse/photonfactory/CMakeFiles /home/gix/programming/eclipse/photonfactory/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/gix/Dropbox/programming/eclipse/photonfactory/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gix/programming/eclipse/photonfactory/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

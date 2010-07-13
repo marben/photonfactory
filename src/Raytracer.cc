@@ -8,8 +8,8 @@
 
 #include <PngWriter.h>	// ggl
 
-using namespace std;
-using namespace PF;
+//using namespace std;
+namespace PF {
 
 Color Raytracer::raytrace(const Scene& scene, const Ray& ray, uint recursion){
 	wfloat t;
@@ -18,14 +18,14 @@ Color Raytracer::raytrace(const Scene& scene, const Ray& ray, uint recursion){
 
 	if(findIntersection(scene, ray, &o, t, normal)){
 		Point3d xPoint(ray.getOrigin() + t * ray.getDirection());
-		vector<Light*> visibleLights = findVisibleLights(scene, xPoint);
+		std::vector<Light*> visibleLights = findVisibleLights(scene, xPoint);
 		SurfacePoint sp(xPoint, ray, normal);
 		Shader* sh = o->getShader();
 		Color color = ((BasicShader*)sh)->shade(sp, visibleLights);	// raytraced shader is always BasicShader(so far)
 
 		// -- reflection, refraction...
 		if(((BasicShader*)sh)->getReflect() && recursion>0){
-			vector<std::pair<Ray,color_t> > secondaryRays = (((BasicShader*)sh)->getSecondaryRays(sp, visibleLights));
+			std::vector<std::pair<Ray,color_t> > secondaryRays = (((BasicShader*)sh)->getSecondaryRays(sp, visibleLights));
 			recursion--;
 			for(uint i=0; i<secondaryRays.size();i++){
 				color +=raytrace(scene, secondaryRays[i].first, recursion)*secondaryRays[i].second;
@@ -51,9 +51,9 @@ std::auto_ptr< Screen > Raytracer::render(const Scene& scene){
 	return screen;
 }
 
-vector<Light*> Raytracer::findVisibleLights(const Scene& scene, const Point3d& xPoint){		// ted s novejma shaderama nefungujou stiny a vubec .. nutno prepsat
-	vector<Light*> allLights = scene.lights; // ! hack ! tak tady to chce urcite optimalizovat
-	vector<Light*> visibleLights;	// sem budu pridavat svetla, ktera vidim
+std::vector<Light*> Raytracer::findVisibleLights(const Scene& scene, const Point3d& xPoint){		// ted s novejma shaderama nefungujou stiny a vubec .. nutno prepsat
+	std::vector<Light*> allLights = scene.lights; // ! hack ! tak tady to chce urcite optimalizovat
+	std::vector<Light*> visibleLights;	// sem budu pridavat svetla, ktera vidim
 	Vector3d normal;
 	uint dontAdd;
 	for(uint l=0; l<allLights.size();l++){
@@ -66,9 +66,10 @@ vector<Light*> Raytracer::findVisibleLights(const Scene& scene, const Point3d& x
 		for(uint o=0; o < scene.objects.size(); o++){
 			wfloat distance;
 			if(scene.objects[o]->intersect(rayToLight, distance, normal)){	// should be shorten(explicit because of debugging :(  )
-				wfloat intersectDistance=_distance(Point3d((rayToLight.getOrigin()+distance*rayToLight.getDirection())), xPoint);
+				//wfloat intersectDistance=_distance(Point3d((rayToLight.getOrigin()+distance*rayToLight.getDirection())), xPoint);
+				wfloat intersectDistance = PF::distance(Point3d((rayToLight.getOrigin()+distance*rayToLight.getDirection())), xPoint);
 				if(intersectDistance > 0.00001){
-					wfloat lightDistance = _distance(xPoint, allLights[l]->getCenter());
+					wfloat lightDistance = PF::distance(xPoint, allLights[l]->getCenter());
 					if(intersectDistance < lightDistance){
 						dontAdd++;
 					}
@@ -101,3 +102,5 @@ bool Raytracer::findIntersection(const Scene& scene, const Ray& ray, Object3d** 
 
 	return false;
 }
+
+}	// namespace PF

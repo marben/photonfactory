@@ -10,8 +10,9 @@ namespace PF{
 class Ray{	// defined by origin and vector
 	public:
 		Ray():origin(0,0,0), dir(0,0,0){}
-		Ray(const Point3d& a, const Vector3d& v):origin(a), dir(v){dir.normalize();}
-		Ray(const Point3d& a, const Point3d& b):origin(a),dir(b-a){dir.normalize();}
+		Ray(const Point3d& a, const Vector3d& v) : origin(a), dir(v){ dir.normalize(); }
+		Ray(const Point3d& a, const Point3d& b) : origin(a), dir(b - a){ dir.normalize(); }
+
 		Point3d getOrigin()const{return origin;}
 		Vector3d getDirection()const{return dir;}
 	private:

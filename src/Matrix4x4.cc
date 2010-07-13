@@ -5,15 +5,15 @@ using namespace PF;
 
 void Matrix4x4::transform(Point3d& p)const{
 	Point3d p2(p);
-	p.x = matrix[0][0]*p2.x+matrix[0][1]*p2.y+matrix[0][2]*p2.z+matrix[0][3]*1;
-	p.y = matrix[1][0]*p2.x+matrix[1][1]*p2.y+matrix[1][2]*p2.z+matrix[1][3]*1;
-	p.z = matrix[2][0]*p2.x+matrix[2][1]*p2.y+matrix[2][2]*p2.z+matrix[2][3]*1;
+	p.x() = matrix[0][0] * p2.x() + matrix[0][1] * p2.y() + matrix[0][2] * p2.z() + matrix[0][3] * 1;
+	p.y() = matrix[1][0] * p2.x() + matrix[1][1] * p2.y() + matrix[1][2] * p2.z() + matrix[1][3] * 1;
+	p.z() = matrix[2][0] * p2.x() + matrix[2][1] * p2.y() + matrix[2][2] * p2.z() + matrix[2][3] * 1;
 }
 
 void Matrix4x4::translate(Point3d& p)const{
-	p.x += matrix[0][3];
-	p.y += matrix[1][3];
-	p.z += matrix[2][3];
+	p.x() += matrix[0][3];
+	p.y() += matrix[1][3];
+	p.z() += matrix[2][3];
 }
 
 void Matrix4x4::setRow(int i, wfloat a, wfloat b, wfloat c, wfloat d){

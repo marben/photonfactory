@@ -8,45 +8,48 @@
 
 namespace PF{
 
-struct Point3d{
-		Point3d():x(0.0),y(0.0),z(0.0){}
-		Point3d(wfloat _x, wfloat _y, wfloat _z):x(_x),y(_y),z(_z){}
-		Point3d& operator *= (const wfloat c){x*=c;y*=c;z*=c;return *this;}
-		wfloat getX(){return x;}
-		wfloat getY(){return y;}
-		wfloat getZ(){return z;}
-		wfloat x, y, z;
+class Point3d{
+public:
+		Point3d():_point(){}
+		Point3d(wfloat x, wfloat y, wfloat z):_point(x, y, z) {}
+		Point3d(const Eigen::Matrix<wfloat, 3, 1> & m) : _point(m) {}
+		Point3d& operator *= (const wfloat c) {_point *= c; return *this;}
+		wfloat getX() const {return _point.x();}
+		wfloat getY() const {return _point.y();}
+		wfloat getZ() const {return _point.z();}
 
+		wfloat& x() {return _point.x();}
+		wfloat& y() {return _point.y();}
+		wfloat& z() {return _point.z();}
+
+		Point3d& operator += (const Point3d& b) {_point += b._point; return *this;}
+		Point3d operator - (const Point3d& b) const { return Point3d(_point - b._point); }
+		Point3d operator + (const Point3d& b) const { return Point3d(_point + b._point); }
+		Point3d operator * (const wfloat& c) const { return Point3d(_point * c); }
+
+		friend wfloat distance(const Point3d& a, const Point3d& b);
+
+protected:
+		Eigen::Matrix<wfloat, 3, 1> _point;
 };
 
-inline Point3d operator - (const Point3d& a, const Point3d& b){
-	return Point3d(a.x-b.x, a.y-b.y, a.z - b.z);
+inline const Point3d operator * (const wfloat c, const Point3d& a)
+{
+	return a * c;
 }
 
-inline Point3d operator + (const Point3d& a, const Point3d& b){
-	return Point3d(a.x + b.x, a.y + b.y, a.z + b.z);
-}
 
-inline const Point3d operator * (const Point3d& a, const wfloat c){
-	return Point3d(a.x*c, a.y*c, a.z*c);
-}
-
-inline const Point3d operator * (const wfloat c, const Point3d& a){
-	return Point3d(a.x*c, a.y*c, a.z*c);
-}
-
-/*
-inline wfloat Point3d::distance(const Point3d& b)const{
-	return (wfloat)sqrt((x*b.x)*(x*b.x) + (y*b.y)*(y*b.y) + (z*b.z)*(z*b.z));
-}
-*/
-inline wfloat _distance(const Point3d& a, const Point3d& b){	// prekryva se s necim z std:: ; je treba zacit pouzivat namespacy. ted neni cas
-	return (wfloat)sqrt((a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y) + (a.z-b.z)*(a.z-b.z));
-}
-
-inline std::ostream& operator<<(std::ostream& stream, const Point3d& p){
-	stream<<"["<<p.x<<","<<p.y<<","<<p.z<<"]";
+inline std::ostream& operator<<(std::ostream& stream, const Point3d& p)
+{
+	stream<<"["<<p.getX()<<","<<p.getY()<<","<<p.getZ()<<"]";
 	return stream;
+}
+
+inline wfloat distance(const Point3d& a, const Point3d& b)
+{
+	Eigen::Matrix<wfloat, 3, 1> difference(a._point - b._point);
+
+	return sqrt(difference.dot(difference));
 }
 
 }	// namespace PF

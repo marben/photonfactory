@@ -17,8 +17,8 @@ Point3d Camera::getRealPoint(uint px, uint py){
 	uint halfPointsY = this->resY/2;
 	Point3d point;
 	point = to;
-	point = point + (worldResolution*((wfloat)halfPointsX-(wfloat)px))*vright;
-	point = point + (worldResolution*((wfloat)halfPointsY-(wfloat)py))*vup;
+	point += ( worldResolution * ((wfloat)halfPointsX - (wfloat)px)) * vright;
+	point += ( worldResolution * ((wfloat)halfPointsY - (wfloat)py)) * vup;
 	return point;
 }
 
