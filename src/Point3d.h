@@ -8,16 +8,33 @@
 
 namespace PF{
 
+// uncomment following define, to use internal representation as 4d, which should help vectorisation
+// currently, this seems to slow raytracer down by about 50%, but this might be due to wrong compiler flags
+
+//#define VEC_3D_REPRESENTED_4D
+
+#ifdef VEC_3D_REPRESENTED_4D
+typedef Eigen::Matrix<wfloat, 4, 1> VectorInternalType;
+#else
+typedef Eigen::Matrix<wfloat, 3, 1> VectorInternalType;
+#endif
+
 class Point3d{
 public:
 		Point3d():_point(){}
+#ifdef VEC_3D_REPRESENTED_4D
+		Point3d(wfloat x, wfloat y, wfloat z):_point(x, y, z, 0) {}
+#else
 		Point3d(wfloat x, wfloat y, wfloat z):_point(x, y, z) {}
-		Point3d(const Eigen::Matrix<wfloat, 3, 1> & m) : _point(m) {}
+#endif
+
+		Point3d(const VectorInternalType & m) : _point(m) {}
 		Point3d& operator *= (const wfloat c) {_point *= c; return *this;}
 		wfloat getX() const {return _point.x();}
 		wfloat getY() const {return _point.y();}
 		wfloat getZ() const {return _point.z();}
 
+		// these return modifiable reference
 		wfloat& x() {return _point.x();}
 		wfloat& y() {return _point.y();}
 		wfloat& z() {return _point.z();}
@@ -30,7 +47,7 @@ public:
 		friend wfloat distance(const Point3d& a, const Point3d& b);
 
 protected:
-		Eigen::Matrix<wfloat, 3, 1> _point;
+		VectorInternalType _point;
 };
 
 inline const Point3d operator * (const wfloat c, const Point3d& a)
@@ -47,7 +64,7 @@ inline std::ostream& operator<<(std::ostream& stream, const Point3d& p)
 
 inline wfloat distance(const Point3d& a, const Point3d& b)
 {
-	Eigen::Matrix<wfloat, 3, 1> difference(a._point - b._point);
+	VectorInternalType difference(a._point - b._point);
 
 	return sqrt(difference.dot(difference));
 }
