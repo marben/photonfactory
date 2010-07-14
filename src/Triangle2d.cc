@@ -47,8 +47,8 @@ bool Triangle2d::intersect(const Point2d& p){
 
 // asi nebude potreba
 wfloat Triangle2d::normalLength(){
-	Vector3d v1(a.x, a.y, 0);
-	Vector3d v2(b.x, b.y, 0);
+	Vector3d v1(a.getX(), a.getY(), 0);
+	Vector3d v2(b.getX(), b.getY(), 0);
 	v1 = cross(v1, v2); // ! hack ! tady to jde optimalizovat, az bude fungovat Vector3d.cross(const Vector3d&) tak jak ma
 	return v1.length();
 }

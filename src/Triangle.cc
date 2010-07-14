@@ -25,46 +25,46 @@ bool Triangle::intersect(const Ray& r, wfloat& distance, Vector3d& normal){
 	Point2d P, B, C;
 	if(abs(normal.x()) > abs(normal.y())){
 		if(abs(normal.x()) > abs(normal.x())){	// omitting x axis (the biggest one)
-			B.x = (*b).y() - (*a).y();
-			B.y = (*b).z() - (*a).z();
-			C.x = (*c).y() - (*a).y();
-			C.y = (*c).z() - (*a).z();
-			P.x = r.getOrigin().y() + r.getDirection().y() * distance - (*a).y();
-			P.y = r.getOrigin().z() + r.getDirection().z() * distance - (*a).z();
+			B.x() = (*b).y() - (*a).y();
+			B.y() = (*b).z() - (*a).z();
+			C.x() = (*c).y() - (*a).y();
+			C.y() = (*c).z() - (*a).z();
+			P.x() = r.getOrigin().y() + r.getDirection().y() * distance - (*a).y();
+			P.y() = r.getOrigin().z() + r.getDirection().z() * distance - (*a).z();
 		}
 		else{	// omitting z axis
-				B.x = (*b).x() - (*a).x();
-				B.y = (*b).y() - (*a).y();
-				C.x = (*c).x() - (*a).x();
-				C.y = (*c).y() - (*a).y();
-				P.x = r.getOrigin().x() + r.getDirection().x() * distance - (*a).x();
-				P.y = r.getOrigin().y() + r.getDirection().y() * distance - (*a).y();
+				B.x() = (*b).x() - (*a).x();
+				B.y() = (*b).y() - (*a).y();
+				C.x() = (*c).x() - (*a).x();
+				C.y() = (*c).y() - (*a).y();
+				P.x() = r.getOrigin().x() + r.getDirection().x() * distance - (*a).x();
+				P.y() = r.getOrigin().y() + r.getDirection().y() * distance - (*a).y();
 		}
 	}
 	else{
 		if(abs(normal.y()) > abs(normal.z())){	// omitting y axis
-			B.x = (*b).x() - (*a).x();
-			B.y = (*b).z() - (*a).z();
-			C.x = (*c).x() - (*a).x();
-			C.y = (*c).z() - (*a).z();
-			P.x = r.getOrigin().x() + r.getDirection().x() * distance - (*a).x();
-			P.y = r.getOrigin().z() + r.getDirection().z() * distance - (*a).z();
+			B.x() = (*b).x() - (*a).x();
+			B.y() = (*b).z() - (*a).z();
+			C.x() = (*c).x() - (*a).x();
+			C.y() = (*c).z() - (*a).z();
+			P.x() = r.getOrigin().x() + r.getDirection().x() * distance - (*a).x();
+			P.y() = r.getOrigin().z() + r.getDirection().z() * distance - (*a).z();
 		}
 		else{	// omitting z axis
-			B.x = (*b).x() - (*a).x();
-			B.y = (*b).y() - (*a).y();
-			C.x = (*c).x() - (*a).x();
-			C.y = (*c).y() - (*a).y();
-			P.x = r.getOrigin().x() + r.getDirection().x() * distance - (*a).x();
-			P.y = r.getOrigin().y() + r.getDirection().y() * distance - (*a).y();
+			B.x() = (*b).x() - (*a).x();
+			B.y() = (*b).y() - (*a).y();
+			C.x() = (*c).x() - (*a).x();
+			C.y() = (*c).y() - (*a).y();
+			P.x() = r.getOrigin().x() + r.getDirection().x() * distance - (*a).x();
+			P.y() = r.getOrigin().y() + r.getDirection().y() * distance - (*a).y();
 		}
 	}
 // -- konec hledani nejlepsi projekce
 
-	wfloat u = (P.y*C.x - P.x*C.y) / ( C.x*B.y - B.x*C.y );
+	wfloat u = (P.y()*C.x() - P.x()*C.y()) / ( C.x()*B.y() - B.x()*C.y() );
 	if(u<0.0f)
 		return false;
-	wfloat v = (P.x - u*B.x) / C.x;
+	wfloat v = (P.x() - u*B.x()) / C.x();
 	if(v<0.0f || v+u>1.0f)
 		return false;
 

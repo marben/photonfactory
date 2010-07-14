@@ -2,7 +2,10 @@ cmake_minimum_required(VERSION 2.6)
 
 project(PhotonFactory)
 
-set(COMPILER_FLAGS "-Wall -O3 -ffast-math")
+#set(CMAKE_C_COMPILER "clang")
+#set(CMAKE_CXX_COMPILER "clang")
+
+set(COMPILER_FLAGS "-Wall -O3")
 set(CMAKE_C_FLAGS ${COMPILER_FLAGS})
 set(CMAKE_CXX_FLAGS ${COMPILER_FLAGS})
 

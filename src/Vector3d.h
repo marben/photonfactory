@@ -13,15 +13,27 @@ namespace PF{
 class Vector3d: public Point3d{
 public:
 		Vector3d() : Point3d() {}
-		Vector3d(wfloat _x, wfloat _y, wfloat _z) : Point3d(_x, _y, _z) {}
+		Vector3d(wfloat x, wfloat y, wfloat z) : Point3d(x, y, z) {}
 		Vector3d(const Point3d& a) : Point3d(a) {}
-		Vector3d(const Point3d& a, const Point3d& b) : Point3d(b.getX() - a.getX(), b.getY() - a.getY(), b.getZ() - a.getZ()) {}
-		Vector3d(const Eigen::Matrix<wfloat, 3, 1>& m) : Point3d(m) {}
+		Vector3d(const Point3d& a, const Point3d& b) : Point3d(b - a) {}
+		Vector3d(const VectorInternalType & m) : Point3d(m) {}
 
-		Vector3d cross(const Vector3d& v)const {return Vector3d(getY() * v.getZ() - getZ() * v.getY(), getZ() * getX() - getX() * v.getZ(), getX() * v.getY() - getY() * v.getX());}	// cross product
-		Vector3d getReflection(const Vector3d& normal)const;	// not yet tested well
+		Vector3d cross(const Vector3d& v) const
+		{
+			// when implementing cross using 4d vectors, we use .cross3 method instead
+#ifdef VEC_3D_REPRESENTED_4D
+			return _point.cross3(v._point);
+#endif
 
-		wfloat length() const {return sqrt(getX() * getX() + getY() * getY() + getZ() * getZ());}
+			return _point.cross(v._point);
+		}
+		Vector3d getReflection(const Vector3d& normal) const;	// not yet tested well
+
+		wfloat length() const
+		{
+			return sqrt(_point.dot(_point));
+		}
+
 		void normalize();
 
 		Vector3d operator * (const wfloat& b) const
@@ -29,7 +41,8 @@ public:
 			return Vector3d(this->_point * b);
 		}
 
-		wfloat dot(const Vector3d& b) const{
+		wfloat dot(const Vector3d& b) const
+		{
 			return _point.dot(b._point);
 		}
 
@@ -41,7 +54,8 @@ public:
 };
 
 
-inline std::ostream& operator<<(std::ostream& stream, const Vector3d& v){
+inline std::ostream& operator<<(std::ostream& stream, const Vector3d& v)
+{
 	stream<<"("<<v.getX()<<", "<<v.getY()<<", "<<v.getZ()<<")";
 	return stream;
 }
