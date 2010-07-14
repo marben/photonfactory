@@ -1,0 +1,140 @@
+<scene>
+
+<shader type="blendershader" name="MAMaterial.001" >
+	<attributes>
+		<color r="0.000000" g="0.800000" b="0.000000" />
+		<specular_color r="1.000000" g="1.000000" b="1.000000" />
+		<mirror_color r="1.000000" g="1.000000" b="1.000000" />
+		<diffuse_reflect value="0.800000" />
+		<specular_amount value="0.500000" />
+		<alpha value="1.000000" />
+		<emit value="0.000000" />
+		<IOR value="1.000000" />
+		<reflect value="on" />
+		<reflect_amount value="0.537744" />
+		<fresnel_offset value="0.937500" />
+		<reflected r="1.000000" g="1.000000" b="1.000000" />
+		<min_refle value="0.937500" />
+		<refract value="on" />
+		<transmit_filter value="0.000000" />
+		<tir value="on" />
+		<absorption r="-0.000000" g="-0.000000" b="-0.000000" />
+		<dispersion_power value="0.000000" />
+		<dispersion_samples value="1" />
+		<dispersion_jitter value="off" />
+		<transmitted r="0.000000" g="0.000000" b="0.000000" />
+		<matmodes value="traceable shadow" />
+		<diffuse_brdf value="lambert" />
+		<specular_brdf value="blender_cooktorr" />
+		<hard value="50" />
+	</attributes>
+</shader>
+
+<shader type="blendershader" name="MAMaterial.002" >
+	<attributes>
+		<color r="0.800000" g="0.497909" b="0.359451" />
+		<specular_color r="1.000000" g="1.000000" b="1.000000" />
+		<mirror_color r="1.000000" g="1.000000" b="1.000000" />
+		<diffuse_reflect value="0.800000" />
+		<specular_amount value="1.356366" />
+		<alpha value="1.000000" />
+		<emit value="0.000000" />
+		<matmodes value="traceable shadow" />
+		<diffuse_brdf value="lambert" />
+		<specular_brdf value="phong" />
+		<hard value="103" />
+	</attributes>
+</shader>
+
+<transform m00="-8.991469" m01="-0.000000" m02="-0.178766" m03="0.000000"
+           m10="0.001600" m11="-8.992886" m12="-0.080476" m13="0.000000"
+           m20="0.178759" m21="0.080492" m22="-8.991109" m23="0.000000"
+           m30="0.000000" m31="0.000000" m32="0.000000" m33="1.000000">
+<object name="OBPlane" shadow="on" caus_IOR="1.000000" shader_name="MAMaterial.001" >
+	<attributes>
+		<caus_tcolor r="0.000000" g="0.000000" b="0.000000" />
+		<caus_rcolor r="0.537744" g="0.537744" b="0.537744" />
+	</attributes>
+	<mesh autosmooth="0.1" has_orco="on" >
+		<points>
+			<p x="1.000000" y="1.000000" z="0.000000" />
+			<p x="1.000000" y="1.000000" z="0.000000" />
+			<p x="-1.000000" y="1.000000" z="-0.000000" />
+			<p x="-1.000000" y="1.000000" z="0.000000" />
+			<p x="-1.000000" y="-1.000000" z="-0.000000" />
+			<p x="-1.000000" y="-1.000000" z="0.000000" />
+			<p x="1.000000" y="-1.000000" z="0.000000" />
+			<p x="1.000000" y="-1.000000" z="0.000000" />
+		</points>
+		<faces>
+			<f a="0" b="2" c="4" shader_name="MAMaterial.001" />
+			<f a="4" b="6" c="0" shader_name="MAMaterial.001" />
+		</faces>
+	</mesh>
+</object>
+</transform>
+
+<transform m00="0.519875" m01="0.000000" m02="0.000000" m03="-0.538695"
+           m10="0.000000" m11="0.519875" m12="0.000000" m13="0.000000"
+           m20="0.000000" m21="0.000000" m22="0.519875" m23="2.497586"
+           m30="0.000000" m31="0.000000" m32="0.000000" m33="1.000000">
+<object name="OBCube" shadow="on"  shader_name="MAMaterial.002" >
+	<attributes>
+	</attributes>
+	<mesh autosmooth="0.1" has_orco="off" >
+		<points>
+			<p x="1.000001" y="1.000000" z="-1.000000" />
+			<p x="1.000000" y="-0.999999" z="-1.000000" />
+			<p x="-0.999999" y="-1.000000" z="-1.000000" />
+			<p x="-0.999998" y="1.000000" z="-0.999999" />
+			<p x="1.000001" y="0.999999" z="1.000000" />
+			<p x="-0.999998" y="0.999999" z="1.000001" />
+			<p x="-0.999999" y="-1.000000" z="1.000001" />
+			<p x="1.000000" y="-1.000000" z="1.000000" />
+		</points>
+		<faces>
+			<f a="0" b="1" c="2" shader_name="MAMaterial.002" />
+			<f a="2" b="3" c="0" shader_name="MAMaterial.002" />
+			<f a="4" b="5" c="6" shader_name="MAMaterial.002" />
+			<f a="6" b="7" c="4" shader_name="MAMaterial.002" />
+			<f a="0" b="4" c="7" shader_name="MAMaterial.002" />
+			<f a="7" b="1" c="0" shader_name="MAMaterial.002" />
+			<f a="1" b="7" c="6" shader_name="MAMaterial.002" />
+			<f a="6" b="2" c="1" shader_name="MAMaterial.002" />
+			<f a="2" b="6" c="5" shader_name="MAMaterial.002" />
+			<f a="5" b="3" c="2" shader_name="MAMaterial.002" />
+			<f a="4" b="0" c="3" shader_name="MAMaterial.002" />
+			<f a="3" b="5" c="4" shader_name="MAMaterial.002" />
+		</faces>
+	</mesh>
+</object>
+</transform>
+
+<light type="pointlight" glow_intensity="0.000000" glow_offset="0.000000" glow_type="0" name="LAMP1" power="29.999983" cast_shadows="on" >
+	<from x="3.141176" y="-1.547902" z="5.904810" />
+	<color r="1.000000" g="1.000000" b="1.000000" />
+</light>
+
+<background type="constant" name="world_background" >
+	<color r="0.056563" g="0.220815" b="0.400000" />
+</background>
+
+<camera name="MAINCAM" type="perspective" resx="800" resy="600"
+	focal="1.093750" aspect_ratio="1.000000"
+	dof_distance="0.000000" aperture="0.000000" use_qmc="on"
+	bokeh_type="disk1" bokeh_bias="uniform" bokeh_rotation="0.000000" >
+	<from x="7.481132" y="-6.507640" z="5.343665" />
+	<to x="6.826270" y="-5.896974" z="4.898420" />
+	<up x="7.163762" y="-6.195171" z="6.239008" />
+</camera>
+
+<render camera_name="MAINCAM"
+	raydepth="5" gamma="1.000000" exposure="0.000000"
+	AA_passes="0" AA_minsamples="1"
+	AA_pixelwidth="1.5" AA_threshold="0.05" bias="0.001000" clamp_rgb="on"
+	background_name="world_background"
+ >
+	<outfile value="scene16.tga" />
+</render>
+
+</scene>
