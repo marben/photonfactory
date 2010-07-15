@@ -22,8 +22,11 @@ typedef Eigen::Matrix<wfloat, 3, 1> VectorInternalType;
 class Point3d{
 public:
 		Point3d():_point(){}
+
+		friend class Matrix4x4;
+
 #ifdef VEC_3D_REPRESENTED_4D
-		Point3d(wfloat x, wfloat y, wfloat z):_point(x, y, z, 0) {}
+		Point3d(wfloat x, wfloat y, wfloat z):_point(x, y, z, 1) {}
 #else
 		Point3d(wfloat x, wfloat y, wfloat z):_point(x, y, z) {}
 #endif
