@@ -1,0 +1,11 @@
+cmake is used to build the project
+
+
+Dependencies:
+
+libpng
+libxml2
+libeigen3
+
+Generating eclipse cdt project files:
+cmake ../project_dir -G "Eclipse CDT4 - Unix Makefiles"
