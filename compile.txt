@@ -1,11 +1,14 @@
-cmake is used to build the project
+* cmake is used to build the project
 
 
-Dependencies:
+* Dependencies:
 
 libpng
 libxml2
 libeigen3
 
-Generating eclipse cdt project files:
+* Generating eclipse cdt project files:
 cmake ../project_dir -G "Eclipse CDT4 - Unix Makefiles"
+
+if eclipse complains about cout cmath and other standard libraries, try clicking right mouse on the project ->Index->Search for unresolved includes
+this will show you the missing includes(probably something included by the standard headers themselves). add the directory to the Project->properties->c++ include paths and symbols
