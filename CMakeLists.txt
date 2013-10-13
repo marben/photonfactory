@@ -5,7 +5,7 @@ project(PhotonFactory)
 #set(CMAKE_C_COMPILER "clang")
 #set(CMAKE_CXX_COMPILER "clang")
 
-set(COMPILER_FLAGS "-Wall -O3")
+set(COMPILER_FLAGS "-Wall")
 set(CMAKE_C_FLAGS ${COMPILER_FLAGS})
 set(CMAKE_CXX_FLAGS ${COMPILER_FLAGS})
 
@@ -21,8 +21,6 @@ include_directories(${PNG_INCLUDE_DIR})
 find_package(LibXml2 REQUIRED)
 include_directories(${LIBXML2_INCLUDE_DIR})
 
-add_subdirectory(extern/ggl)
-include_directories(extern/ggl/src)
 
 #set(EIGEN_INCLUDE_DIR /usr/include/eigen2)
 #include_directories(${EIGEN_INCLUDE_DIR})
@@ -30,5 +28,5 @@ include_directories(extern/ggl/src)
 include_directories("extern/eigen")
 
 add_executable(ray ${SOURCES})
-target_link_libraries(ray ${PNG_LIBRARIES} ${LIBXML2_LIBRARIES} ggl)
+target_link_libraries(ray ${PNG_LIBRARIES} ${LIBXML2_LIBRARIES})
 

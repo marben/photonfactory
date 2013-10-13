@@ -1,8 +1,8 @@
 #ifndef _CONFIG_H_
 #define _CONFIG_H_
 
-#include <Image2d.h>
-#include <ColorRGB.h>
+#include "Image2d.h"
+#include "ColorRGB.h"
 
 namespace PF{
 

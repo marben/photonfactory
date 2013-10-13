@@ -1,12 +1,13 @@
 #include <iostream>
 #include <memory>
 
-#include <PngWriter.h>
+#include "PngWriter.h"
 
 #include "Scene.h"
 #include "Shader.h"
 #include "Raytracer.h"
 #include "YafImport.h"
+#include "PngWriter.h"
 
 
 using namespace PF;
@@ -25,9 +26,13 @@ int main(int argc, char* argv[]){
 		return 0;
 	}
 	string outputFile(argv[1]);
-	outputFile[outputFile.size()-1]='g';	// tohle je jen narychlo :)
-	outputFile[outputFile.size()-2]='n';
+
+	// the file suffix
 	outputFile[outputFile.size()-3]='p';
+	outputFile[outputFile.size()-2]='n';
+	outputFile[outputFile.size()-1]='g';
+	
+	
 
 	Raytracer r;
 	auto_ptr<Screen> screen = r.render(*scene.get());

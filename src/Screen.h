@@ -1,7 +1,7 @@
 #ifndef _SCREEN_H_
 #define _SCREEN_H_
 
-#include <Image2d.h>	// ggl
+#include "Image2d.h"
 
 #include "config.h"
 #include "Point3d.h"

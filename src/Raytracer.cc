@@ -6,7 +6,7 @@
 #include "SurfacePoint.h"
 #include "BasicShader.h"
 
-#include <PngWriter.h>	// ggl
+#include "PngWriter.h"
 
 //using namespace std;
 namespace PF {
