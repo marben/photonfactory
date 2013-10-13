@@ -15,7 +15,7 @@ using namespace std;
 int main(int argc, char* argv[]){
 	YafImport import;
 	if(argc != 2){
-		cout<<"jako paramter pouzijte nazev souboru s renderovanou scenou"<<endl;
+		cout<<"Usage: ray [input_file]"<<endl;
 		return 0;
 	}
 	auto_ptr<Scene> scene( import.import(argv[1]) );
