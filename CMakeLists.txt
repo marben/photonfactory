@@ -5,7 +5,7 @@ project(PhotonFactory)
 #set(CMAKE_C_COMPILER "clang")
 #set(CMAKE_CXX_COMPILER "clang")
 
-set(COMPILER_FLAGS "-Wall")
+set(COMPILER_FLAGS "-Wall -O3")
 set(CMAKE_C_FLAGS ${COMPILER_FLAGS})
 set(CMAKE_CXX_FLAGS ${COMPILER_FLAGS})
 
@@ -21,11 +21,10 @@ include_directories(${PNG_INCLUDE_DIR})
 find_package(LibXml2 REQUIRED)
 include_directories(${LIBXML2_INCLUDE_DIR})
 
-
-#set(EIGEN_INCLUDE_DIR /usr/include/eigen2)
-#include_directories(${EIGEN_INCLUDE_DIR})
-
-include_directories("extern/eigen")
+# libeigen is found using pkg-config plugin
+INCLUDE(FindPkgConfig)
+pkg_check_modules(EIGEN3 REQUIRED eigen3)
+include_directories(${EIGEN3_INCLUDE_DIRS})
 
 add_executable(ray ${SOURCES})
 target_link_libraries(ray ${PNG_LIBRARIES} ${LIBXML2_LIBRARIES})
