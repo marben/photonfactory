@@ -8,14 +8,11 @@ project(PhotonFactory)
 
 option(test "Build all tests." ON)
 
-#set(COMPILER_FLAGS "-Wall -O3")
-
-set(CMAKE_C_FLAGS ${COMPILER_FLAGS})
-set(CMAKE_CXX_FLAGS ${COMPILER_FLAGS})
+set(COMPILER_FLAGS "-Wall")
+#set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}")
+#set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
-set(CMAKE_BUILD_TYPE Debug)
-#set(CMAKE_BUILD_TYPE Release)
 
 # using GLOB. listing source files is too annoying at the moment
 # ! need to rerun cmake after adding a file
