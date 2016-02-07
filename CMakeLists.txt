@@ -1,14 +1,14 @@
 cmake_minimum_required(VERSION 2.6)
 
 # this has to be bfore the project() command
-set(CMAKE_C_COMPILER "clang")
-set(CMAKE_CXX_COMPILER "clang++")
+#set(CMAKE_C_COMPILER "clang")
+#set(CMAKE_CXX_COMPILER "clang++")
 
 project(PhotonFactory)
 
 option(test "Build all tests." ON)
 
-set(COMPILER_FLAGS "-Wall -O3")
+#set(COMPILER_FLAGS "-Wall -O3")
 
 set(CMAKE_C_FLAGS ${COMPILER_FLAGS})
 set(CMAKE_CXX_FLAGS ${COMPILER_FLAGS})
@@ -17,6 +17,8 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_BUILD_TYPE Debug)
 #set(CMAKE_BUILD_TYPE Release)
 
+# using GLOB. listing source files is too annoying at the moment
+# ! need to rerun cmake after adding a file
 file(GLOB SOURCES src/*.cc)
 
 find_package(PNG REQUIRED)

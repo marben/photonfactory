@@ -27,13 +27,11 @@ int main(int argc, char* argv[]){
 	}
 	string outputFile(argv[1]);
 
-	// the file suffix
+	// the file suffix - this should be done nicer, but don't want to add boost::filesystem atm
 	outputFile[outputFile.size()-3]='p';
 	outputFile[outputFile.size()-2]='n';
 	outputFile[outputFile.size()-1]='g';
 	
-	
-
 	Raytracer r;
 	auto_ptr<Screen> screen = r.render(*scene.get());
 
